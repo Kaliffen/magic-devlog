@@ -1,7 +1,7 @@
 title: Magic Devlog
 description: Development log for Magic — a standalone log; source code is private.
-url: ""
-baseurl: ""
+url: "https://kaliffen.github.io"
+baseurl: "/magic-devlog"
 
 markdown: kramdown
 permalink: /entries/:title/
