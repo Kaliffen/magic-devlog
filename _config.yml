@@ -1,0 +1,23 @@
+title: Magic Devlog
+description: Development log for Magic — a standalone log; source code is private.
+url: ""
+baseurl: ""
+
+markdown: kramdown
+permalink: /entries/:title/
+
+defaults:
+  - scope:
+      path: "entries"
+    values:
+      layout: entry
+
+collections:
+  entries:
+    output: true
+    permalink: /entries/:title/
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
