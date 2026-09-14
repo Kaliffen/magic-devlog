@@ -320,6 +320,46 @@ main {
   letter-spacing: 0.03em;
 }
 
+/* ---------- figures ---------- */
+figure {
+  margin: 1.6rem 0;
+}
+figure img {
+  width: 100%;
+  border: 1px solid var(--border);
+}
+figcaption {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+.figure-grid {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .figure-grid { grid-template-columns: 1fr 1fr; }
+  .figure-grid figcaption { grid-column: 1 / -1; }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+  margin: 1em 0;
+  display: block;
+  overflow-x: auto;
+}
+th, td {
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+th { color: var(--muted); font-weight: 600; }
+
 /* ---------- misc ---------- */
 hr {
   border: none;
