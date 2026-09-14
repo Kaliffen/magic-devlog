@@ -1,6 +1,7 @@
 ---
 title: First Light
 date: 2026-09-14
+slug: first-light
 tag: Meta
 ---
 

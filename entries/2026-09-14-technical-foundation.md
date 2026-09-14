@@ -1,6 +1,7 @@
 ---
 title: The Technical Foundation
 date: 2026-09-14 12:00:00 +0200
+slug: technical-foundation
 tag: Engine
 description: What Magic is built on — the stack, the precision model, the world chart, the frame, the data, and the process that keeps it honest.
 ---

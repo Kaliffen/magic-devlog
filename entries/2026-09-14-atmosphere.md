@@ -1,6 +1,7 @@
 ---
 title: "Atmosphere: Air Between the Camera and Everything"
 date: 2026-09-14 14:00:00 +0200
+slug: atmosphere
 tag: Atmosphere
 description: The Hillaire-style LUT pipeline, how aerial perspective survives an orbit-to-ground camera, the humidity-driven aerosol, refraction, and what the sky does to the ground.
 ---
