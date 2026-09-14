@@ -4,11 +4,12 @@ url: "https://kaliffen.github.io"
 baseurl: "/magic-devlog"
 
 markdown: kramdown
-permalink: /entries/:title/
+future: true
 
 defaults:
   - scope:
-      path: "entries"
+      path: ""
+      type: entries
     values:
       layout: entry
 
