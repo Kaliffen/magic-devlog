@@ -7,7 +7,7 @@ description: Reimplemented the atmosphere to follow the reference paper more clo
 ---
 
 The atmosphere has been reimplemented to follow
-[Schneegans 2024](https://doi.org/10.1145/3641519.3657424) more closely, and the aerosol
+[Schneegans 2024](https://onlinelibrary.wiley.com/doi/full/10.1111/cgf.15010) more closely, and the aerosol
 phase now runs on Bennett's fast fit by default instead of only the numerical Mie tables.
 Below is the showcase gallery, unedited, from the ocean to orbit.
 
