@@ -65,6 +65,22 @@ twilight arch fades the way an eye sees it rather than the way a long exposure r
   <a href="{{ '/assets/video/recorded-flight.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
 </figure>
 
+<h2>From orbit to a walk on Himmelbjerget</h2>
+<p>An authored spaceplane approach, rendered headless: a spiral from 6,000 km that breaks
+off at re-entry height over the Bay of Biscay, a banked glide through waypoints over the
+Paris basin, the Ardennes, the north German plain and the Elbe, decelerating up Jutland to a
+hover over the summit, and a vertical touchdown into the walking view at 1.7 m. One camera,
+one world, from the disc of the planet to standing in the trees.</p>
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/himmelbjerget-flight-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/himmelbjerget-flight.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/himmelbjerget-flight.mp4' | relative_url }}">Download the video (MP4, 9 MB)</a>
+  </video>
+  <figcaption>Himmelbjerget, 56.1&deg; N: 115 seconds of flight at 2.2&times; speed, 1280&times;720 at 30 fps.
+  <a href="{{ '/assets/video/himmelbjerget-flight.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
+
 <h2>Latest entries</h2>
 <ul class="entry-list">
 {% assign entries = site.entries | sort: "date" | reverse %}
