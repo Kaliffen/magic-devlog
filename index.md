@@ -50,6 +50,21 @@ camera and material pipeline that draws the ground under your feet at 1.7 m.</p>
   </a>
 </div>
 
+<h2>Seventeen hours in thirty-eight seconds</h2>
+<p>A time-lapse recorded in the engine from one viewpoint 686 m over the Hardangerfjord and
+exported headless through the same renderer, night to night at twice speed. The terrain
+and the clouds shadow the air, the sky sets the exposure once the ground goes dark, and the
+twilight arch fades the way an eye sees it rather than the way a long exposure records it.</p>
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/recorded-flight-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/recorded-flight.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/recorded-flight.mp4' | relative_url }}">Download the video (MP4, 9 MB)</a>
+  </video>
+  <figcaption>Hardangerfjord, 59.9&deg; N: a full day from the same spot, 1280&times;720 at 30 fps.
+  <a href="{{ '/assets/video/recorded-flight.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
+
 <h2>Latest entries</h2>
 <ul class="entry-list">
 {% assign entries = site.entries | sort: "date" | reverse %}

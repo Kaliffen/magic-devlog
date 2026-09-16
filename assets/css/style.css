@@ -328,6 +328,13 @@ figure img {
   width: 100%;
   border: 1px solid var(--border);
 }
+figure video {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #000;
+}
 figcaption {
   margin-top: 0.5rem;
   color: var(--muted);
