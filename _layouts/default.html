@@ -25,6 +25,7 @@
         <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Intro</a>
         <a href="{{ '/project/' | relative_url }}"{% if page.url contains '/project/' %} aria-current="page"{% endif %}>Project</a>
         <a href="{{ '/devlog/' | relative_url }}"{% if page.url contains '/devlog/' or page.url contains '/entries/' %} aria-current="page"{% endif %}>Devlog</a>
+        <a href="{{ '/obsidian/' | relative_url }}"{% if page.url contains '/obsidian/' %} aria-current="page"{% endif %}>Obsidian</a>
         <a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about/' %} aria-current="page"{% endif %}>About Me</a>
         <a href="{{ '/contact/' | relative_url }}"{% if page.url contains '/contact/' %} aria-current="page"{% endif %}>Contact</a>
         <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
