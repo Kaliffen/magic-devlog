@@ -145,3 +145,59 @@ river at low level until the camera sets down on the valley floor.
   into a pink sky.
   <a href="{{ '/assets/video/obsidian/forest-sunset.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
 </figure>
+
+## On foot
+
+Five seconds each at standing height in five corners of the same planet, walking at a
+stroll with a slow turn of the head. The eye rides 1.7 m above the ground as it is drawn
+and eases over its bumps. Short enough for 10 MB to carry them at the full 2560&times;1440.
+
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/obsidian-walk-rainforest-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/walk-rainforest.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/walk-rainforest.mp4' | relative_url }}">Download the video (MP4, 10 MB)</a>
+  </video>
+  <figcaption><strong>Rainforest.</strong> Palms, tall grass and flowers on the delta of the planet's greatest river, 6&deg; north.
+  <a href="{{ '/assets/video/obsidian/walk-rainforest.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
+
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/obsidian-walk-woodland-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/walk-woodland.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/walk-woodland.mp4' | relative_url }}">Download the video (MP4, 10 MB)</a>
+  </video>
+  <figcaption><strong>Open woodland.</strong> Broadleaf trees over dry grass at 57&deg; north, late afternoon.
+  <a href="{{ '/assets/video/obsidian/walk-woodland.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
+
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/obsidian-walk-valley-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/walk-valley.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/walk-valley.mp4' | relative_url }}">Download the video (MP4, 10 MB)</a>
+  </video>
+  <figcaption><strong>Mountain valley.</strong> The valley floor where the descent above sets down, looking down-valley between the ridges.
+  <a href="{{ '/assets/video/obsidian/walk-valley.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
+
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/obsidian-walk-polar-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/walk-polar.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/walk-polar.mp4' | relative_url }}">Download the video (MP4, 10 MB)</a>
+  </video>
+  <figcaption><strong>Polar plain.</strong> Ice and scattered stone at 79&deg; north, the sky clear to the horizon.
+  <a href="{{ '/assets/video/obsidian/walk-polar.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
+
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/obsidian-walk-alpine-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/walk-alpine.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/walk-alpine.mp4' | relative_url }}">Download the video (MP4, 10 MB)</a>
+  </video>
+  <figcaption><strong>Alpine snowfield.</strong> Grass tufts in a snowy hollow at 4,200 m, below the peaks of the range.
+  <a href="{{ '/assets/video/obsidian/walk-alpine.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
