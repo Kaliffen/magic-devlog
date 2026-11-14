@@ -206,6 +206,17 @@ main {
   margin: 1.4rem 0 0.5rem;
 }
 
+/* ---------- archive note ---------- */
+.archive-note {
+  margin: 1.5rem 0 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent-2);
+  border-radius: var(--radius);
+  background: var(--bg-elev-2);
+  color: var(--muted);
+}
+
 /* ---------- buttons ---------- */
 .btn {
   display: inline-flex;

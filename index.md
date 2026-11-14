@@ -2,94 +2,146 @@
 layout: default
 title: Intro
 permalink: /
+description: Obsidian makes imaginary Earth-sized planets from a seed and renders them from orbit down to standing on the ground. Flights over planet 28.
 ---
 
 <div class="hero">
-  <h1>Magic — a planet-scale renderer, built and logged in the open</h1>
+  <h1>Obsidian — imaginary planets from a seed</h1>
   <p class="lede">
-    Magic is a Vulkan renderer that flies from orbit down to the ground on
-    measured Earth terrain — one camera, one world, no seam between the disc
-    of the planet and standing on a ridge at 1.7 m. This devlog tracks the
-    build: what changed, what broke, and why.
+    Obsidian makes up planets: give it a seed and in about ten seconds it builds an
+    Earth-sized world, then lets you fly from orbit down to standing in the grass on it.
+    No geodata anywhere. It is what <a href="{{ '/magic/' | relative_url }}">Magic</a>, the
+    measured-Earth renderer this log began with, became.
   </p>
   <div class="hero-actions">
-    <a class="btn btn-primary" href="{{ '/devlog/' | relative_url }}">Read the devlog</a>
-    <a class="btn" href="{{ '/project/' | relative_url }}">What is Magic?</a>
+    <a class="btn btn-primary" href="#orbit-to-the-riverbank">Watch the flights</a>
+    <a class="btn" href="{{ '/magic/' | relative_url }}">Magic (archived)</a>
   </div>
 </div>
 
-<hr>
+## A planet built one cause after another
 
-<h2>Six places, one renderer</h2>
-<p>Headless stills from the measured Earth world, unedited. Every one of these is the same
-camera and material pipeline that draws the ground under your feet at 1.7 m.</p>
-<div class="site-showcase">
-  <a class="site-card" href="{{ '/assets/images/site-patagonia-ice.jpg' | relative_url }}">
-    <img src="{{ '/assets/images/site-patagonia-ice.jpg' | relative_url }}" alt="The Southern Patagonian Ice Field from orbit, braided glacial rivers below">
-    <span class="site-caption">Southern Patagonian Ice Field, from orbit</span>
-  </a>
-  <a class="site-card" href="{{ '/assets/images/site-kilimanjaro.jpg' | relative_url }}">
-    <img src="{{ '/assets/images/site-kilimanjaro.jpg' | relative_url }}" alt="Kilimanjaro's Kibo summit at the equatorial snow line, noon">
-    <span class="site-caption">Kilimanjaro, the Kibo summit at noon</span>
-  </a>
-  <a class="site-card" href="{{ '/assets/images/site-bosphorus.jpg' | relative_url }}">
-    <img src="{{ '/assets/images/site-bosphorus.jpg' | relative_url }}" alt="The Bosphorus strait mouth, forested shoreline and beaches">
-    <span class="site-caption">The Bosphorus mouth, looking south along the strait</span>
-  </a>
-  <a class="site-card" href="{{ '/assets/images/site-vatnajokull.jpg' | relative_url }}">
-    <img src="{{ '/assets/images/site-vatnajokull.jpg' | relative_url }}" alt="Vatnajokull ice cap from 100 km, broken cloud over the glacier">
-    <span class="site-caption">Vatnaj&ouml;kull ice cap, 100 km up</span>
-  </a>
-  <a class="site-card" href="{{ '/assets/images/site-monte-rosa.jpg' | relative_url }}">
-    <img src="{{ '/assets/images/site-monte-rosa.jpg' | relative_url }}" alt="Monte Rosa across the Alps from Turin at sunrise">
-    <span class="site-caption">Monte Rosa from Turin, sunrise</span>
-  </a>
-  <a class="site-card" href="{{ '/assets/images/site-maunakea.jpg' | relative_url }}">
-    <img src="{{ '/assets/images/site-maunakea.jpg' | relative_url }}" alt="A ridge on Mauna Kea's flank at dusk">
-    <span class="site-caption">Mauna Kea, dusk on the summit road</span>
-  </a>
-</div>
+The generator does not paint terrain with noise and call it a planet. It builds one the
+way planets are built, each step feeding the next:
 
-<h2>Seventeen hours in thirty-eight seconds</h2>
-<p>A time-lapse recorded in the engine from one viewpoint 686 m over the Hardangerfjord and
-exported headless through the same renderer, night to night at twice speed. The terrain
-and the clouds shadow the air, the sky sets the exposure once the ground goes dark, and the
-twilight arch fades the way an eye sees it rather than the way a long exposure records it.</p>
+1. **Plates.** Tectonic plates drift, rift, subduct and collide for a couple of hundred
+   million years. That decides where the continents are and why the mountains are where
+   they are. The history is kept, so the app can show you the youngest collision or the
+   oldest rift.
+2. **Terrain.** The crust the plates leave behind is dressed into shelves, trenches and a
+   sea level.
+3. **Erosion.** Rain is routed to the sea and cuts valleys on the way, coarse to fine.
+4. **Climate.** Sun, wind and sea decide where it is warm and where it rains, and the
+   rivers are cut again with the rain that actually falls.
+5. **Surface.** Lakes fill by water balance, the ground takes its colour from climate and
+   rock, and a detail cascade carries the ten-kilometre chart down to the scale of a
+   footstep.
+
+Every planet on this page is **seed 28**: 32 % land, 18 plates, 163 lakes, its highest
+summit at 8,364 m, built in about nine seconds.
+
+## The renderer
+
+Obsidian is written in Rust on Vulkan, with the ambition it inherits from Magic: one camera, one
+world, no seam between the disc of the planet and a walk on it. Terrain is cut into tiles
+that the generator makes on demand, on worker threads, as the camera asks for them. Near
+the ground a concurrent binary tree refines the mesh to the pixel. Over it go a physical
+atmosphere, volumetric clouds driven by the planet's own weather, an ocean, trees, shrubs
+and grass scattered from a single vegetation function of the world, and a sky of real stars
+and a real Moon, all placed by one clock.
+
+## How these videos were made
+
+Each flight is a route: a handful of keyframes with a place, a height above the ground, a
+heading and a pitch, and the camera passes smoothly through them. The height is measured
+from the ground smoothed along the path, more the higher you fly, so a low pass follows a
+valley floor and a high one glides over the ridges instead of bobbing on each.
+
+The frames are rendered offline at 2560&times;1440 and 30 fps, and a frame is only kept
+once the terrain it shows has arrived and the mesh has stopped refining, so there is no
+pop-in however slowly the tiles stream. They are then scaled to 1080p and encoded in two
+passes to fit just under 10 MB each. Nothing is edited after the render.
+
+## Orbit to the riverbank
+
+One continuous flight cut into three parts that play one after another: a fall from
+400 km onto a snow-capped massif, a sweep west across the ridges into a gorge, and the
+river at low level until the camera sets down on the valley floor.
+
 <figure>
   <video class="flight-video" controls playsinline preload="metadata"
-    poster="{{ '/assets/images/recorded-flight-poster.jpg' | relative_url }}">
-    <source src="{{ '/assets/video/recorded-flight.mp4' | relative_url }}" type="video/mp4">
-    <a href="{{ '/assets/video/recorded-flight.mp4' | relative_url }}">Download the video (MP4, 9 MB)</a>
+    poster="{{ '/assets/images/obsidian-descent-1-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/descent-1.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/descent-1.mp4' | relative_url }}">Download the video (MP4, 9 MB)</a>
   </video>
-  <figcaption>Hardangerfjord, 59.9&deg; N: a full day from the same spot, 1280&times;720 at 30 fps.
-  <a href="{{ '/assets/video/recorded-flight.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+  <figcaption><strong>1 of 3.</strong> From 400 km straight down onto the coast and the
+  snowfields, levelling out at 4.5 km over the massif.
+  <a href="{{ '/assets/video/obsidian/descent-1.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
 </figure>
 
-<h2>From orbit to a walk on Himmelbjerget</h2>
-<p>An authored spaceplane approach, rendered headless: a spiral from 6,000 km that breaks
-off at re-entry height over the Bay of Biscay, a banked glide through waypoints over the
-Paris basin, the Ardennes, the north German plain and the Elbe, decelerating up Jutland to a
-hover over the summit, and a vertical touchdown into the walking view at 1.7 m. One camera,
-one world, from the disc of the planet to standing in the trees.</p>
 <figure>
   <video class="flight-video" controls playsinline preload="metadata"
-    poster="{{ '/assets/images/himmelbjerget-flight-poster.jpg' | relative_url }}">
-    <source src="{{ '/assets/video/himmelbjerget-flight.mp4' | relative_url }}" type="video/mp4">
-    <a href="{{ '/assets/video/himmelbjerget-flight.mp4' | relative_url }}">Download the video (MP4, 9 MB)</a>
+    poster="{{ '/assets/images/obsidian-descent-2-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/descent-2.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/descent-2.mp4' | relative_url }}">Download the video (MP4, 9 MB)</a>
   </video>
-  <figcaption>Himmelbjerget, 56.1&deg; N: 115 seconds of flight at 2.2&times; speed, 1280&times;720 at 30 fps.
-  <a href="{{ '/assets/video/himmelbjerget-flight.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+  <figcaption><strong>2 of 3.</strong> West across the ridges and down into the gorge.
+  <a href="{{ '/assets/video/obsidian/descent-2.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
 </figure>
 
-<h2>Latest entries</h2>
-<ul class="entry-list">
-{% assign entries = site.entries | sort: "date" | reverse %}
-{% for entry in entries limit: 4 %}
-  <li class="entry-card">
-    <a href="{{ entry.url | relative_url }}">{{ entry.title }}</a>
-    {% if entry.date %}<time datetime="{{ entry.date | date_to_xmlschema }}">{{ entry.date | date: "%B %-d, %Y" }}</time>{% endif %}
-    {% if entry.excerpt %}<p class="excerpt">{{ entry.excerpt | strip_html | truncatewords: 28 }}</p>{% endif %}
-  </li>
-{% endfor %}
-</ul>
-<p><a href="{{ '/devlog/' | relative_url }}">All entries →</a></p>
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/obsidian-descent-3-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/descent-3.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/descent-3.mp4' | relative_url }}">Download the video (MP4, 10 MB)</a>
+  </video>
+  <figcaption><strong>3 of 3.</strong> Down the river at a few hundred metres, across the
+  water and onto the valley floor, turning to look back along the river.
+  <a href="{{ '/assets/video/obsidian/descent-3.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
+
+## Flights
+
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/obsidian-gorge-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/gorge.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/gorge.mp4' | relative_url }}">Download the video (MP4, 9 MB)</a>
+  </video>
+  <figcaption><strong>The gorge.</strong> Upstream between the valley walls toward the snow
+  peaks, in low morning sun.
+  <a href="{{ '/assets/video/obsidian/gorge.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
+
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/obsidian-river-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/river.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/river.mp4' | relative_url }}">Download the video (MP4, 10 MB)</a>
+  </video>
+  <figcaption><strong>The river.</strong> Low along the meanders of a lowland river through
+  patchy forest, an afternoon of high cloud.
+  <a href="{{ '/assets/video/obsidian/river.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
+
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/obsidian-range-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/range.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/range.mp4' | relative_url }}">Download the video (MP4, 9 MB)</a>
+  </video>
+  <figcaption><strong>The range.</strong> At 8 to 10 km over the gorge country into the
+  snowy range, the afternoon sun throwing the ridges' shadows across the snow.
+  <a href="{{ '/assets/video/obsidian/range.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
+
+<figure>
+  <video class="flight-video" controls playsinline preload="metadata"
+    poster="{{ '/assets/images/obsidian-forest-sunset-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/video/obsidian/forest-sunset.mp4' | relative_url }}" type="video/mp4">
+    <a href="{{ '/assets/video/obsidian/forest-sunset.mp4' | relative_url }}">Download the video (MP4, 9 MB)</a>
+  </video>
+  <figcaption><strong>Forest at sunset.</strong> Skimming the treetops at a hundred metres
+  into a pink sky.
+  <a href="{{ '/assets/video/obsidian/forest-sunset.mp4' | relative_url }}">Open the MP4</a>.</figcaption>
+</figure>
